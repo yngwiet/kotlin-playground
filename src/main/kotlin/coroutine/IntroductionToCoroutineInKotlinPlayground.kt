@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
     parallelDecomposition()
     exceptionsWithCoroutines()
     cancellationsWithCoroutines()
-    understandDispatchers()
+    understandWithContextAndDispatchers()
 }
 
 fun initialScenario() {
@@ -194,7 +194,7 @@ suspend fun getWeatherReportWithCancellation() = coroutineScope {
     forecast.await()
 }
 
-fun understandDispatchers() {
+fun understandWithContextAndDispatchers() {
     runBlocking {
         // Coroutine 1
         println("Dispatchers demo")
@@ -212,8 +212,11 @@ fun understandDispatchers() {
                 delay(1000)
                 println("10 results found.")
             }
+            // Once withContext is done, it will switch back to the original dispatcher
             println("Results loaded")
         }
+
+        // these 2 statements are executed before the coroutine
         println("Thread for the runBlocking: ${Thread.currentThread().name}")
         println("Loading...")
     }
