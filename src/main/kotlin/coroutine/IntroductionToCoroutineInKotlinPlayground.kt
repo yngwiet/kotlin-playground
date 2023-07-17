@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
 fun initialScenario() {
     runBlocking {
         // runBlocking will not return until all work within its lambda block is completed
-        // even if there is a suspend function like delay()
+        // The thread runs runBlocking gets blocked until all the coroutines inside runBlocking { ... } complete their execution
         println("Weather forecast initial")
         // delay() will suspend this coroutine
         // which means "println("Sunny")" will not execute after delayed time
